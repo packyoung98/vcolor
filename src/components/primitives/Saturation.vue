@@ -9,7 +9,7 @@ const bg = computed(() => `hsl(${props.hue}, 100%, 50%)`);
 const left = computed(() => `${props.saturation}%`);
 const top = computed(() => `${100 - props.value}%`);
 
-const { down } = useDrag(
+const { target: _target, down } = useDrag(
   (x, y) =>
     emit("input", { s: Math.round(x * 100), v: Math.round((1 - y) * 100) }),
   () => emit("change")

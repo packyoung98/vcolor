@@ -12,7 +12,7 @@ const grad = computed(() => {
 });
 const left = computed(() => `${props.rgba.a * 100}%`);
 
-const { down } = useDrag(
+const { target: _target, down } = useDrag(
   (x) => emit("input", Math.round(x * 100) / 100),
   () => emit("change")
 );
