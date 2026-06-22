@@ -1,5 +1,10 @@
 # vcolor
 
+[![npm](https://img.shields.io/npm/v/@packyoung98/vcolor)](https://www.npmjs.com/package/@packyoung98/vcolor)
+[![license](https://img.shields.io/npm/l/@packyoung98/vcolor)](./LICENSE)
+
+**[Demo](https://packyoung98.github.io/vcolor/)** · **[npm](https://www.npmjs.com/package/@packyoung98/vcolor)** · **[GitHub](https://github.com/packyoung98/vcolor)**
+
 Vue 3 전용 컬러 피커 라이브러리. 완전한 `v-model` 지원, CSS 변수 기반 커스터마이징, 그리고 13종의 피커 컴포넌트를 제공합니다.
 
 react-color / vue-color의 컴포넌트 구성을 따르되, 내부는 `tinycolor` 같은 외부 의존성 없이 직접 구현한 색 변환 레이어 위에서 동작합니다.
@@ -23,7 +28,7 @@ react-color / vue-color의 컴포넌트 구성을 따르되, 내부는 `tinycolo
 ## 설치
 
 ```bash
-npm install vcolor
+npm install @packyoung98/vcolor
 ```
 
 > `vue >= 3.3.0` 이 peer dependency입니다.
@@ -36,13 +41,13 @@ npm install vcolor
 
 ```ts
 // main.ts
-import "vcolor/style.css";
+import "@packyoung98/vcolor/style.css";
 ```
 
 ```vue
 <script setup lang="ts">
 import { ref } from "vue";
-import { SketchPicker } from "vcolor";
+import { SketchPicker } from "@packyoung98/vcolor";
 
 const color = ref("#FF5733");
 </script>
@@ -59,7 +64,7 @@ const color = ref("#FF5733");
 이름은 모두 named export로 가져옵니다.
 
 ```ts
-import { ChromePicker, SketchPicker, HueSlider } from "vcolor";
+import { ChromePicker, SketchPicker, HueSlider } from "@packyoung98/vcolor";
 ```
 
 | 컴포넌트          | 카테고리 | Alpha | 설명                                               |
@@ -140,46 +145,36 @@ const d = ref({ h: 11, s: 100, l: 60, a: 1 }); // HSLA 객체
 
 ### 입력 포맷 전환 (ChromePicker)
 
-`ChromePicker` 하단의 `▲▼`로 입력칸을 hex / rgb / hsl로 전환할 수 있습니다. 어떤 모드를 노출할지 `inputFormats`로 지정하고, 안 주면 셋 다 제공합니다.
+`ChromePicker` 하단의 `▲▼`로 입력칸을 hex / rgb / hsl로 전환할 수 있습니다.
 
 ```vue
 <ChromePicker v-model="color" />
-<!-- hex/rgb/hsl 전부 -->
 <ChromePicker v-model="color" :input-formats="['hex', 'rgb']" />
 <ChromePicker v-model="color" :input-formats="['hex']" />
-<!-- 하나면 전환 버튼 숨김 -->
 ```
-
-> `inputFormats`(입력칸 표시 포맷)와 `format`(emit 포맷)은 별개입니다.
 
 ### 스포이드 (EyeDropper)
 
-`ChromePicker`는 브라우저가 지원하는 경우 미리보기 옆에 스포이드 버튼을 표시합니다. 누르면 화면 어디서든 색을 추출합니다.
+`ChromePicker`는 브라우저가 지원하는 경우 미리보기 옆에 스포이드 버튼을 표시합니다.
 
 > 네이티브 EyeDropper API 기반이라 **Chromium 계열(Chrome·Edge 등)에서만** 동작하며, 미지원 브라우저(Firefox·Safari)에서는 버튼이 자동으로 숨겨집니다.
 
-컴포저블로 직접 사용할 수도 있습니다.
-
 ```ts
-import { useEyeDropper } from "vcolor";
+import { useEyeDropper } from "@packyoung98/vcolor";
 
 const { isSupported, open } = useEyeDropper();
-const hex = await open(); // '#rrggbb' 또는 null(미지원/취소)
+const hex = await open();
 ```
 
 ### 스워치 색 지정
 
-스워치 계열 피커는 `presetColors`로 **1차원 또는 2차원(행 단위)** 배열을 받습니다.
-
 ```vue
-<!-- 1차원 + 열 수 지정 -->
 <CompactPicker
   v-model="color"
   :preset-colors="['#F00', '#0F0', '#00F']"
   :columns="3"
 />
 
-<!-- 2차원: 행 = 색조, 열 = 명암 -->
 <SwatchesPicker
   v-model="color"
   :preset-colors="[
@@ -197,38 +192,28 @@ const hex = await open(); // '#rrggbb' 또는 null(미지원/취소)
 
 ### 1. 테마 — CSS 변수
 
-상위 요소에 `--vc-*` 변수만 선언하면 적용됩니다.
-
 ```html
-<div
-  style="--vc-width: 300px; --vc-border-radius: 16px; --vc-btn-apply-bg: #6c5ce7;"
->
+<div style="--vc-width: 300px; --vc-border-radius: 16px;">
   <SketchPicker v-model="color" />
 </div>
 ```
 
-너비·모서리·그림자·폰트부터 팔레트 높이, 슬라이더 두께, 스워치 열 수, 버튼 색까지 변수로 노출되어 있습니다.
-
 ### 2. 배치·세부 스타일 — 클래스 오버라이드
-
-모든 컴포넌트가 `vc-` BEM 클래스를 쓰고 scoped가 아니라서, 일반 CSS로 배치까지 덮어쓸 수 있습니다.
 
 ```css
 .vc-chrome__fields {
   order: -1;
-} /* 입력칸을 맨 위로 */
+}
 .vc-chrome__mode {
   display: none;
-} /* 특정 부분 숨기기 */
+}
 ```
 
 ### 3. 완전 자유 배치 — primitives 조립
 
-`useColor`와 원자 컴포넌트(`Saturation`, `Hue`, `Alpha`, `Swatch`, `EditableInput`)를 직접 조립하면 배치가 100% 자유롭습니다.
-
 ```vue
 <script setup lang="ts">
-import { useColor, Hue, Saturation } from "vcolor";
+import { useColor, Hue, Saturation } from "@packyoung98/vcolor";
 const c = useColor("#FF5733");
 </script>
 
@@ -247,8 +232,6 @@ const c = useColor("#FF5733");
 
 ## 색 공간 / 변환 유틸
 
-내부 상태는 HSVA를 단일 진실로 두고 hex/rgba/hsla를 파생합니다. 변환 함수는 따로 import해서 쓸 수 있습니다.
-
 ```ts
 import {
   hexToRgb,
@@ -257,23 +240,14 @@ import {
   rgbToHsl,
   hslToRgb,
   rgbToHex,
-} from "vcolor";
+} from "@packyoung98/vcolor";
 ```
-
-| 포맷       | 예시                    | 범위                           |
-| ---------- | ----------------------- | ------------------------------ |
-| HEX / HEXA | `#FF5733` / `#FF573380` | 6 또는 8자리                   |
-| RGBA       | `{ r, g, b, a }`        | r,g,b: 0–255 / a: 0–1          |
-| HSVA       | `{ h, s, v, a }`        | h: 0–360 / s,v: 0–100 / a: 0–1 |
-| HSLA       | `{ h, s, l, a }`        | h: 0–360 / s,l: 0–100 / a: 0–1 |
-
-> 변환은 내부적으로 반올림하지 않아 RGB↔HSV 왕복이 무손실입니다. 반올림은 표시/emit 시점에만 적용됩니다.
 
 ---
 
 ## Composables
 
-`vcolor` 또는 `vcolor/composables`에서 가져올 수 있습니다.
+`@packyoung98/vcolor` 에서 가져올 수 있습니다.
 
 | 이름                     | 설명                                             |
 | ------------------------ | ------------------------------------------------ |
@@ -288,12 +262,10 @@ import {
 
 ```bash
 npm install
-npm run typecheck   # vue-tsc 타입체크
-npm run build       # dist 생성 (ESM + CJS + .d.ts + style.css)
-npx vitest run      # 테스트
+npm run typecheck
+npm run build
+npx vitest run
 ```
-
-데모는 `App.demo.vue`에서 13종을 한눈에 확인할 수 있습니다.
 
 ---
 

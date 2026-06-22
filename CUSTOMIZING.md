@@ -87,7 +87,7 @@
 
 ```vue
 <script setup lang="ts">
-import { useColor, Saturation, Hue } from "vcolor";
+import { useColor, Saturation, Hue } from "@packyoung98/vcolor";
 const c = useColor("#FF5733");
 </script>
 <template>
