@@ -1,0 +1,38 @@
+{
+  "name": "vcolor",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/vcolor.cjs",
+  "module": "./dist/vcolor.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vcolor.js",
+      "require": "./dist/vcolor.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/packyoung98/vcolor"
+  },
+  "homepage": "https://github.com/packyoung98/vcolor",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.5.34"
+  },
+  "devDependencies": {
+    "@types/node": "^24.12.3",
+    "@vitejs/plugin-vue": "^6.0.6",
+    "@vue/tsconfig": "^0.9.1",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.12",
+    "vitest": "^3.2.6",
+    "vue-tsc": "^3.2.8"
+  }
+}
