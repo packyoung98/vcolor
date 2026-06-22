@@ -1,6 +1,6 @@
 {
   "name": "@packyoung98/vcolor",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "type": "module",
   "main": "./dist/vcolor.cjs",
   "module": "./dist/vcolor.js",

@@ -6,7 +6,7 @@ const props = defineProps<{ hue: number }>();
 const emit = defineEmits<{ input: [number]; change: [] }>();
 
 const left = computed(() => `${(props.hue / 360) * 100}%`);
-const { target: _target, down } = useDrag(
+const { target, down } = useDrag(
   (x) => emit("input", Math.round(x * 360)),
   () => emit("change")
 );
