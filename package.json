@@ -1,6 +1,6 @@
 {
-  "name": "vcolor",
-  "version": "0.0.0",
+  "name": "@packyoung98/vcolor",
+  "version": "0.0.1",
   "type": "module",
   "main": "./dist/vcolor.cjs",
   "module": "./dist/vcolor.js",
@@ -15,12 +15,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/packyoung98/vcolor"
+    "url": "git+https://github.com/packyoung98/vcolor.git"
   },
   "homepage": "https://github.com/packyoung98/vcolor",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
+    "build:pages": "vite build --mode pages",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -30,6 +31,7 @@
     "@types/node": "^24.12.3",
     "@vitejs/plugin-vue": "^6.0.6",
     "@vue/tsconfig": "^0.9.1",
+    "gh-pages": "^6.3.0",
     "typescript": "^6.0.3",
     "vite": "^8.0.12",
     "vitest": "^3.2.6",

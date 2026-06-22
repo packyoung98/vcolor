@@ -293,7 +293,7 @@ npm run build       # dist 생성 (ESM + CJS + .d.ts + style.css)
 npx vitest run      # 테스트
 ```
 
-데모는 `App.demo.vue`에서 13종을 한눈에 확인할 수 있습니다.
+데모는 `App.vue`에서 13종을 한눈에 확인할 수 있습니다.
 
 ---
 
