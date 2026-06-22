@@ -35,7 +35,7 @@ const rootVars = computed(() => ({
   "--on-accent": onAccent.value,
 }));
 
-const cmd = "npm i vcolor";
+const cmd = "npm i @packyoung98/vcolor";
 const copied = ref(false);
 function copy() {
   navigator.clipboard?.writeText(cmd);
@@ -52,8 +52,14 @@ function copy() {
         <div class="brand"><span class="dot" />vcolor</div>
         <div class="nav-links">
           <a href="#pickers">pickers</a>
-          <a href="https://github.com" target="_blank">github</a>
-          <a href="https://npmjs.com" target="_blank">npm</a>
+          <a href="https://github.com/packyoung98/vcolor" target="_blank"
+            >github</a
+          >
+          <a
+            href="https://www.npmjs.com/package/@packyoung98/vcolor"
+            target="_blank"
+            >npm</a
+          >
         </div>
       </nav>
 
@@ -177,10 +183,17 @@ function copy() {
 
       <footer>
         <span>vcolor · MIT</span>
-        <span
-          ><a href="https://github.com" target="_blank">GitHub</a> ·
-          <a href="https://npmjs.com" target="_blank">npm</a></span
-        >
+        <span>
+          <a href="https://github.com/packyoung98/vcolor" target="_blank"
+            >GitHub</a
+          >
+          ·
+          <a
+            href="https://www.npmjs.com/package/@packyoung98/vcolor"
+            target="_blank"
+            >npm</a
+          >
+        </span>
       </footer>
     </div>
   </div>
